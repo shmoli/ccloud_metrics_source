@@ -4,11 +4,11 @@
     <modelVersion>4.0.0</modelVersion>
 
     <groupId>com.github.shmoli.kafka.connect.source</groupId>
-    <artifactId>metricsApi</artifactId>
+    <artifactId>ccloud_metrics_source</artifactId>
     <version>1.0</version>
     <packaging>jar</packaging>
 
-    <name>metricsApi</name>
+    <name>ccloud_metrics_api</name>
     <description>A Kafka Connect Connector for metricsApi</description>
 
     <properties>
