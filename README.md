@@ -6,7 +6,7 @@ For more information on Confluent Cloud and the metrics API see: <https://docs.c
 
 # Build
 
-The projevct depends on Java 1.8 and apache maven to build.
+The project depends on Java 1.8 and apache maven to build.
 
 ```bash
 git clone git@github.com:shmoli/ccloud_metrics_source.git
