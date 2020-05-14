@@ -41,9 +41,9 @@ Use the following example json to post a connector instance using the REST endpo
 		  "value.converter.schema.registry.url": "http://localhost:8081",
 		  "errors.log.enable": true,
 		  "errors.log.include.messages": true,
-		  "ccloud.user.id": <CCLoud_User_ID>,
-		  "ccloud.user.password": <CCloud_Password>,
-		  "ccloud.cluster.id": <Cluster_ID>,
+		  "ccloud.user.id": "<CCLoud_User_ID>",
+		  "ccloud.user.password": "<CCloud_Password>",
+		  "ccloud.cluster.id": "<Cluster_ID>",
 		  "ccloud.topic.level.metrics": true,
 		  "kafka.topic.name": "CCloudMetrics"   	
     }
@@ -54,6 +54,8 @@ Use the following example json to post a connector instance using the REST endpo
 
 The Connector will poll for data once every minute.  Confirm data is getting published to your cluster.
 
+![Example Messages][messages]
 
+[messages]: https://github.com/shmoli/ccloud_metrics_source/blob/master/resources/CCLoudMetricsScreenshot.png "Example Messages"
 
 
