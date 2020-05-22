@@ -135,7 +135,6 @@ public class MetricsAPISourceTask extends SourceTask {
 
     Struct dimensionStruct = new Struct(METRIC_DIMENSIONS_SCHEMA)
             .put(CCLOUD_CLUSTER_ID_FIELD, config.getCcloudClusterId())
-            .put(METRIC_AGGTYPE_FIELD, "SUM")
             .put(METRIC_HOST_FIELD, config.getCcloudClusterId()); // Get rid of forward slash for ddog
 
     if (metric.getGroupbyName().equals(TOPIC_LABEL)) {

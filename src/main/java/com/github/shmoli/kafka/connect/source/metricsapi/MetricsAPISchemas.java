@@ -16,7 +16,6 @@ public class MetricsAPISchemas {
     public static String METRIC_VALUES_FIELD     = "values";       // Value of reading
     public static String METRIC_DBLVALUE_FIELD   = "doubleValue";  // Value of reading
     public static String METRIC_DIMENSIONS_FIELD = "dimensions";   // Dimensions struct
-    public static String METRIC_AGGTYPE_FIELD    = "aggregationType";   // Dimensions struct
     public static String GROUPBY_NAME_FIELD      = "groupby_name"; // Aggregation level (cluster or topic)
     public static String GROUPBY_VALUE_FIELD     = "groupby_value";// Aggregation level (cluster or topic value)
 
@@ -33,7 +32,6 @@ public class MetricsAPISchemas {
     public static Schema METRIC_DIMENSIONS_SCHEMA = SchemaBuilder.struct().name(SCHEMA_DIMENSIONS_VALUE)
             .field(CCLOUD_CLUSTER_ID_FIELD, Schema.STRING_SCHEMA)
             .field(CCLOUD_TOPIC_FIELD,      Schema.STRING_SCHEMA)
-            .field(METRIC_AGGTYPE_FIELD,    Schema.STRING_SCHEMA)
             .field(METRIC_HOST_FIELD,       Schema.STRING_SCHEMA)
             .build();
 
