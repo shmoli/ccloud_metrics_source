@@ -21,8 +21,7 @@ import java.time.format.DateTimeFormatter;
 import java.util.ArrayList;
 import java.util.Map;
 
-import static com.github.shmoli.kafka.connect.source.metricsapi.utils.GitProperties.COMMIT_ID_ABBREV;
-import static com.github.shmoli.kafka.connect.source.metricsapi.utils.GitProperties.REMOTE_ORIGIN_URL;
+import static com.github.shmoli.kafka.connect.source.metricsapi.utils.GitProperties.*;
 import static javax.ws.rs.core.HttpHeaders.CONTENT_TYPE;
 import static javax.ws.rs.core.HttpHeaders.USER_AGENT;
 
@@ -45,7 +44,7 @@ public class MetricsAPIHttpClient {
         try {
             // Fess up the project/revision to CCloud in case we cause some issue
             Map<String,String> properties = GitProperties.getProperties();
-            userAgent = properties.get(REMOTE_ORIGIN_URL) + " " + properties.get(COMMIT_ID_ABBREV);
+            userAgent = properties.get(REMOTE_ORIGIN_URL) + " " + properties.get(COMMIT_ID_DESCRIBE);
         } catch (IOException e) {
             userAgent = "CCloud Source Connector";
         }
