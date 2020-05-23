@@ -2,6 +2,7 @@ package com.github.shmoli.kafka.connect.source.metricsapi;
 
 import com.github.shmoli.kafka.connect.source.metricsapi.model.Metric;
 import com.github.shmoli.kafka.connect.source.metricsapi.model.MetricType;
+import com.github.shmoli.kafka.connect.source.metricsapi.utils.GitProperties;
 import com.mashape.unirest.request.HttpRequest;
 import com.mashape.unirest.request.HttpRequestWithBody;
 import org.json.JSONArray;
@@ -14,9 +15,16 @@ import com.mashape.unirest.http.Unirest;
 import com.mashape.unirest.http.exceptions.UnirestException;
 
 import javax.naming.AuthenticationException;
+import java.io.IOException;
 import java.time.OffsetDateTime;
 import java.time.format.DateTimeFormatter;
 import java.util.ArrayList;
+import java.util.Map;
+
+import static com.github.shmoli.kafka.connect.source.metricsapi.utils.GitProperties.COMMIT_ID_ABBREV;
+import static com.github.shmoli.kafka.connect.source.metricsapi.utils.GitProperties.REMOTE_ORIGIN_URL;
+import static javax.ws.rs.core.HttpHeaders.CONTENT_TYPE;
+import static javax.ws.rs.core.HttpHeaders.USER_AGENT;
 
 public class MetricsAPIHttpClient {
 
@@ -30,9 +38,17 @@ public class MetricsAPIHttpClient {
     }
 
     MetricsAPISourceConnectorConfig config;
+    String userAgent;
 
     MetricsAPIHttpClient(MetricsAPISourceConnectorConfig config_) {
         config = config_;
+        try {
+            // Fess up the project/revision to CCloud in case we cause some issue
+            Map<String,String> properties = GitProperties.getProperties();
+            userAgent = properties.get(REMOTE_ORIGIN_URL) + " " + properties.get(COMMIT_ID_ABBREV);
+        } catch (IOException e) {
+            userAgent = "CCloud Source Connector";
+        }
     }
 
     private static final Logger log = LoggerFactory.getLogger(MetricsAPIHttpClient.class);
@@ -166,7 +182,8 @@ public class MetricsAPIHttpClient {
     }
 
     void setHeaders(HttpRequest request){
-        request.header("content-type", "application/json");
+        request.header(CONTENT_TYPE, "application/json");
+        request.header(USER_AGENT, userAgent);
     }
 
     protected String getGroupByName(MetricType metric) {
