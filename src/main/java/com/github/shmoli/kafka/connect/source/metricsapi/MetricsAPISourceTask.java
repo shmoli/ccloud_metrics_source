@@ -130,7 +130,7 @@ public class MetricsAPISourceTask extends SourceTask {
     return key;
   }
 
-  final static String TOPIC_LABEL = "metric.label.topic";
+  final static String TOPIC_LABEL = "metric.topic";
 
   public static long tsMillis(String timestamp) {
     return tsSecs(timestamp) * 1000;
