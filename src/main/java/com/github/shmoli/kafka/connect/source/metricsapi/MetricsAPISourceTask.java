@@ -122,7 +122,7 @@ public class MetricsAPISourceTask extends SourceTask {
             .put(CCLOUD_CLUSTER_ID_FIELD, config.getCcloudClusterId())
             .put(METRIC_NAME_FIELD, metric.getName());
 
-    if(config.isTopicLevelMetrics())
+    if(config.isTopicLevelMetrics() && metric.getGroupbyValue().contains("topic"))
       key.put(CCLOUD_TOPIC_FIELD, metric.getGroupbyValue());
     else
       key.put(CCLOUD_TOPIC_FIELD, "");
