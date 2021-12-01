@@ -41,8 +41,8 @@ Use the following example json to post a connector instance using the REST endpo
 		  "value.converter.schema.registry.url": "http://localhost:8081",
 		  "errors.log.enable": true,
 		  "errors.log.include.messages": true,
-		  "ccloud.user.id": "<CCLoud_User_ID>",
-		  "ccloud.user.password": "<CCloud_Password>",
+		  "ccloud.api.key": "<Cloud_API_Key_>",
+		  "ccloud.api.secret": "<Cloud_API_Secret>",
 		  "ccloud.cluster.id": "<Cluster_ID>",
 		  "ccloud.topic.level.metrics": true,
 		  "kafka.topic.name": "CCloudMetrics"   	
