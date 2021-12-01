@@ -29,12 +29,12 @@ import java.util.Map;
 
 public class MetricsAPISourceConnectorConfig extends AbstractConfig {
 
-  public static final String CCLOUD_USER_ID_CONFIG = "ccloud.user.id";
-  private static final String CCLOUD_USER_ID_DOC = "The user account to connect to Confluent Cloud\n"+
-                                                "This is the email address you would use to log into Confluent Cloud";
+  public static final String CCLOUD_USER_ID_CONFIG = "ccloud.api.key";
+  private static final String CCLOUD_USER_ID_DOC = "The cloud api key to connect to Confluent Cloud\n"+
+                                                "This is the credential you would use read from the Metrics API";
 
-  public static final String CCLOUD_USER_PASSWORD_CONFIG = "ccloud.user.password";
-  private static final String CCLOUD_USER_PASSWORD_DOC = "The Password to log into Confluent Cloud\n";
+  public static final String CCLOUD_USER_PASSWORD_CONFIG = "ccloud.api.secret";
+  private static final String CCLOUD_USER_PASSWORD_DOC = "The secret for the supplied '" + CCLOUD_USER_ID_CONFIG + "'\n";
 
   public static final String CCLOUD_CLUSTER_ID_CONFIG = "ccloud.cluster.id";
   private static final String CCLOUD_CLUSTER_ID_DOC = "The Cluster id to monitor, usually in the format lkc-XXXXX\n";
@@ -106,6 +106,6 @@ public class MetricsAPISourceConnectorConfig extends AbstractConfig {
         .define(TOPIC_LEVEL_METRICS_CONFIG,  Type.BOOLEAN,  true,  Importance.MEDIUM, TOPIC_LEVEL_METRICS_DOC)
         .define(KAFKA_TOPIC_NAME_CONFIG,     Type.STRING,   Importance.HIGH,   KAFKA_TOPIC_NAME_DOC)
         .define(NAME_SEPARATOR_CONFIG,       Type.STRING,   "|",   Importance.MEDIUM, NAME_SEPARATOR_DOC)
-        .define(NAME_PREFIX_CONFIG,          Type.STRING,   "",    Importance.MEDIUM, NAME_PREFIX_CONFIG);
+        .define(NAME_PREFIX_CONFIG,          Type.STRING,   "",    Importance.MEDIUM, NAME_PREFIX_DOC);
   }
 }

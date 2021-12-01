@@ -56,4 +56,8 @@ public class MetricsAPIHttpClientTest {
         assertEquals("application/json", http.getHeaders().get(CONTENT_TYPE).get(0));
         assert(http.getHeaders().containsKey(USER_AGENT));
     }
+
+
+
+
 }

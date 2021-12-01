@@ -45,8 +45,9 @@ import static javax.ws.rs.core.HttpHeaders.USER_AGENT;
 
 public class MetricsAPIHttpClient {
 
-    static final String HTTPCLIENT_URL_CLOUD_DESCRIPTORS = "https://api.telemetry.confluent.cloud/v1/metrics/cloud/descriptors";
-    static final String HTTPCLIENT_URL_CLOUD_QUERY       = "https://api.telemetry.confluent.cloud/v1/metrics/cloud/query";
+    // Hard Code Kafka for now
+    static final String HTTPCLIENT_URL_CLOUD_DESCRIPTORS = "https://api.telemetry.confluent.cloud/v2/metrics/cloud/descriptors/metrics?resource_type=kafka";
+    static final String HTTPCLIENT_URL_CLOUD_QUERY       = "https://api.telemetry.confluent.cloud/v2/metrics/cloud/query";
 
     enum RequestType
     {
@@ -206,9 +207,11 @@ public class MetricsAPIHttpClient {
     protected String getGroupByName(MetricType metric) {
 
         if(config.isTopicLevelMetrics() && metric.getLabels().contains("topic"))
-            return "metric.label.topic";
+            return "metric.topic";
+        else if (metric.getLabels().contains("partition"))
+            return "metric.partition";
         else
-            return "metric.label.cluster_id";
+            return "resource.kafka.id";
 
     }
 
@@ -221,14 +224,9 @@ public class MetricsAPIHttpClient {
                 "        }\n" +
                 "    ],\n" +
                 "    \"filter\": {\n" +
-                "        \"filters\": [\n" +
-                "            {\n" +
-                "                \"field\": \"metric.label.cluster_id\",\n" +
+                "                \"field\": \"resource.kafka.id\",\n" +
                 "                \"op\": \"EQ\",\n" +
                 "                \"value\": \"%s\"\n" +
-                "            }\n" +
-                "        ],\n" +
-                "        \"op\": \"AND\"\n" +
                 "    },\n" +
                 "    \"granularity\": \"PT1M\",\n" +
                 "    \"group_by\": [\n" +

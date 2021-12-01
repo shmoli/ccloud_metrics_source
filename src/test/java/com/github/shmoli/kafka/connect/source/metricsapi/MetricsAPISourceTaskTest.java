@@ -18,11 +18,13 @@
 package com.github.shmoli.kafka.connect.source.metricsapi;
 
 import com.github.shmoli.kafka.connect.source.metricsapi.model.Metric;
+import org.apache.kafka.connect.source.SourceRecord;
 import org.junit.After;
 import org.junit.Before;
 import org.junit.Test;
 
 import java.util.HashMap;
+import java.util.List;
 import java.util.Map;
 
 import static com.github.shmoli.kafka.connect.source.metricsapi.MetricsAPISourceTask.TOPIC_LABEL;
@@ -131,5 +133,25 @@ public class MetricsAPISourceTaskTest {
         assertEquals(0,next % st);   // next is aligned to the sampletime boundary
     }
 
+    //@Test
+    /*public void connectivity_v2_test() {
+        t = new MetricsAPISourceTask();
+        m = new MetricOverride();
+        m.setName("myvar");
+        m.setGroupbyName("cluster");
+        orig = new HashMap<>();
+        orig.put(MetricsAPISourceConnectorConfig.CCLOUD_CLUSTER_ID_CONFIG, "lkc-fill_me_in");
+        orig.put(MetricsAPISourceConnectorConfig.CCLOUD_USER_ID_CONFIG, "****");
+        orig.put(MetricsAPISourceConnectorConfig.CCLOUD_USER_PASSWORD_CONFIG, "*****");
+        orig.put(MetricsAPISourceConnectorConfig.KAFKA_TOPIC_NAME_CONFIG, "metrics_api");
 
+        t.start(orig);
+        List<SourceRecord> r=null;
+        try {
+           r  =  t.poll();
+
+        }
+        catch (Exception e){}
+        r.size();
+    }*/
 }
