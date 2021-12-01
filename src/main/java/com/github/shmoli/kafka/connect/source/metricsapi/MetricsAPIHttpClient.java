@@ -217,7 +217,6 @@ public class MetricsAPIHttpClient {
         String query = String.format("{\n" +
                 "    \"aggregations\": [\n" +
                 "        {\n" +
-                "            \"agg\": \"SUM\",\n" +
                 "            \"metric\": \"%s\"\n" +
                 "        }\n" +
                 "    ],\n" +
